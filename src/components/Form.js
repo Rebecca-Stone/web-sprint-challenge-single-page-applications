@@ -1,41 +1,113 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-export default function Form() {
+export default function Form(props) {
+  const { values, update, submit, disabled, errors } = props;
+
+  const onChange = (evt) => {
+    const { name, value, type, checked } = evt.target;
+    const valueToUse = type === "checkbox" ? checked : value;
+    update(name, valueToUse);
+  };
+
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+  };
+
   return (
-    <form id="pizza-form">
+    <form id="pizza-form" onSubmit={onSubmit}>
+      <div className="errors">
+        <div>{errors.username}</div>
+        <div>{errors.email}</div>
+        <div>{errors.role}</div>
+        <div>{errors.civil}</div>
+      </div>
+      <div className="sizeArea">
+        <label>
+          Pizza Size
+          <select
+            value={values.size}
+            name="size"
+            onChange={onChange}
+            id="size-dropdown"
+          >
+            <option value="">---Select a Size---</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+        </label>
+      </div>
       <div className="toppingArea">
         <label>
           Pepperoni
-          <input type="checkbox" name="pepperoni" />
+          <input
+            type="checkbox"
+            name="pepperoni"
+            checked={values.pepperoni}
+            onChange={onChange}
+          />
         </label>
         <label>
           Cheese
-          <input type="checkbox" name="cheese" />
+          <input
+            type="checkbox"
+            name="cheese"
+            checked={values.cheese}
+            onChange={onChange}
+          />
         </label>
         <label>
           Olives
-          <input type="checkbox" name="olives" />
+          <input
+            type="checkbox"
+            name="olives"
+            checked={values.olives}
+            onChange={onChange}
+          />
         </label>
         <label>
           Peppers
-          <input type="checkbox" name="peppers" />
+          <input
+            type="checkbox"
+            name="peppers"
+            checked={values.peppers}
+            onChange={onChange}
+          />
         </label>
       </div>
 
       <div className="textAreas">
         <label>
           Name
-          <input placeholder="Name" type="text" id="name-input" />
+          <input
+            name="name"
+            placeholder="Name"
+            maxLength="10"
+            value={values.username}
+            onChange={onChange}
+            type="text"
+            id="name-input"
+          />
         </label>
 
         <label>
           Special Instructions
-          <input placeholder="Anything to add?" type="text" id="special-text" />
+          <input
+            placeholder="Anything to add?"
+            type="text"
+            id="special-text"
+            name="special"
+            value={values.special}
+            onChange={onChange}
+          />
         </label>
       </div>
       <Link to="/orderComplete">
-        <button id="order-button">Place order</button>
+        <button disabled={disabled} id="order-button">
+          Place order
+        </button>
       </Link>
     </form>
   );
@@ -45,13 +117,13 @@ export default function Form() {
 
 // Data should look something like
 
-//name: string, text input, id of "name-input", key string
-//size: string, dropdown, id of "size-dropdown", key string
+//name: string, key string
+//size: string, key string
 //topping1: bool, checkbox, name each separately!, key bool
 //topping2: bool, checkbox, name each separately!, key bool
 //topping3: bool, checkbox, name each separately!, key bool
 //topping4: bool, checkbox, name each separately!, key bool
-//special: string, text input id of "special-text", key string
+//special: string, key string
 //submit: button, id of "order-button",
 
 //error message is "name must be at least 2 characters"
