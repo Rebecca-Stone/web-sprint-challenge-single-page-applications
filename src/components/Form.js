@@ -7,6 +7,7 @@ export default function Form(props) {
   const onChange = (evt) => {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === "checkbox" ? checked : value;
+    console.log(valueToUse)
     update(name, valueToUse);
   };
 
@@ -18,10 +19,8 @@ export default function Form(props) {
   return (
     <form id="pizza-form" onSubmit={onSubmit}>
       <div className="errors">
-        <div>{errors.username}</div>
-        <div>{errors.email}</div>
-        <div>{errors.role}</div>
-        <div>{errors.civil}</div>
+        <div>{errors.name}</div>
+        <div>{errors.size}</div>
       </div>
       <div className="sizeArea">
         <label>
