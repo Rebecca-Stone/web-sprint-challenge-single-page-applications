@@ -1,50 +1,42 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 export default function Form() {
   return (
-    <form id="pizza-form" >
+    <form id="pizza-form">
       <div className="toppingArea">
         <label>
           Pepperoni
-          <input 
-            type="checkbox" 
-            name="pepperoni" />
+          <input type="checkbox" name="pepperoni" />
         </label>
-        <label>Cheese
-            <input 
-                type='checkbox'
-                name='cheese' />
+        <label>
+          Cheese
+          <input type="checkbox" name="cheese" />
         </label>
-        <label>Olives
-            <input 
-                type='checkbox'
-                name='olives' />
+        <label>
+          Olives
+          <input type="checkbox" name="olives" />
         </label>
-        <label>Peppers
-            <input 
-                type='checkbox'
-                name='peppers' />
+        <label>
+          Peppers
+          <input type="checkbox" name="peppers" />
         </label>
       </div>
 
       <div className="textAreas">
         <label>
           Name
-          <input 
-            placeholder="Name" 
-            type="text" 
-            id="name-input" />
+          <input placeholder="Name" type="text" id="name-input" />
         </label>
 
         <label>
           Special Instructions
-          <input 
-            placeholder="Anything to add?" 
-            type="text" 
-            id="special-text" />
+          <input placeholder="Anything to add?" type="text" id="special-text" />
         </label>
       </div>
-      <button id="order-button">Place order</button>
+      <Link to="/orderComplete">
+        <button id="order-button">Place order</button>
+      </Link>
     </form>
   );
 }

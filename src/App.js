@@ -1,20 +1,27 @@
 //import useState, useEffect
 //import yup
-//import browserRouter as router
-import React from 'react';
+import { Route } from "react-router-dom";
+import React from "react";
 //import schema
-import Home from './components/Home'
-import Form from './components/Form'
-import Ordered from './components/Ordered'
 
+//components used fro the different routes
+import Home from "./components/Home";
+import Form from "./components/Form";
+import Ordered from "./components/Ordered";
 
 const App = () => {
   return (
     <>
       <h1>Lambda Eats</h1>
-      <Home />
-      <Form />
-      <Ordered />
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/pizza">
+        <Form />
+      </Route>
+      <Route path="/orderComplete">
+        <Ordered />
+      </Route>
     </>
   );
 };
