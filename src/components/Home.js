@@ -1,4 +1,5 @@
 import React from "react";
+//using link to navigate to Form.js
 import { Link } from "react-router-dom";
 
 export default function Home() {
