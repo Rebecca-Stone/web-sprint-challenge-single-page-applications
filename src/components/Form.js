@@ -2,17 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Form(props) {
-  //this is the information that was passed down from App
   const { values, update, submit, disabled, errors } = props;
-
-  //this this changes the event.target value based on what is chosen
   const onChange = (evt) => {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === "checkbox" ? checked : value;
     update(name, valueToUse);
   };
 
-  //this prevents the page from reloading and losing all data on submit
   const onSubmit = (evt) => {
     evt.preventDefault();
     submit();
@@ -20,12 +16,10 @@ export default function Form(props) {
 
   return (
     <form id="pizza-form" onSubmit={onSubmit}>
-      {/* this is where the errors will be displayed */}
       <div className="errors">
         <div>{errors.name}</div>
         <div>{errors.size}</div>
       </div>
-      {/* this is the dropdown menu to choose the size of the pizza */}
       <div className="sizeArea">
         <label>
           Pizza Size
@@ -43,7 +37,6 @@ export default function Form(props) {
         </label>
       </div>
 
-      {/* this is the checkboxes where you choose your toppings */}
       <div className="toppingArea">
         <label>
           Pepperoni
@@ -83,7 +76,6 @@ export default function Form(props) {
         </label>
       </div>
 
-      {/* this is the area where you enter your name and any special instructions */}
       <div className="textAreas">
         <label>
           Name
@@ -99,7 +91,6 @@ export default function Form(props) {
         </label>
 
         <label>
-          Special Instructions
           <input
             placeholder="Anything to add?"
             type="text"
@@ -111,7 +102,6 @@ export default function Form(props) {
         </label>
       </div>
 
-      {/* this is the submit button, it only works if you have entered all needed inputs */}
       <Link to="/orderComplete">
         <button disabled={disabled} id="order-button">
           Place order
@@ -120,18 +110,3 @@ export default function Form(props) {
     </form>
   );
 }
-
-//Form.js '/pizza'
-
-// Data should look something like
-
-//name: string, key string
-//size: string, key string
-//topping1: bool, checkbox, name each separately!, key bool
-//topping2: bool, checkbox, name each separately!, key bool
-//topping3: bool, checkbox, name each separately!, key bool
-//topping4: bool, checkbox, name each separately!, key bool
-//special: string, key string
-//submit: button, id of "order-button",
-
-//error message is "name must be at least 2 characters"

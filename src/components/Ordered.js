@@ -1,5 +1,4 @@
 import React from "react";
-//using link to navigate back to Home.js
 import { Link } from "react-router-dom";
 
 export default function Ordered() {
@@ -12,4 +11,3 @@ export default function Ordered() {
     </div>
   );
 }
-//order placed
